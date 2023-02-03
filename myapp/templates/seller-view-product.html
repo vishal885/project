@@ -1,0 +1,86 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+ 
+
+</head>
+
+<body class="sub_page">
+
+  
+    <!-- header section strats -->
+    <header class="header_section">
+     
+    </header>
+    <!-- end header section -->
+  
+
+  <!-- food section -->
+
+  <section class="food_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+        My Menu
+        </h2>
+      </div>
+
+      <ul class="filters_menu">
+        <li class="active" data-filter="*">All</li>
+        <li data-filter=".burger">Burger</li>
+        <li data-filter=".pizza">Pizza</li>
+        <li data-filter=".pasta">Pasta</li>
+        <li data-filter=".fries">Fries</li>
+      </ul>
+
+      <div class="filters-content">
+        <div class="row grid">
+          {% for i in products %}
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                
+                <div class="img-box">
+                  <img src="{{i.product_pic.url}}
+                  " alt="">
+                </div>
+
+                <div class="detail-box">
+                  <h5>
+                    {{i.product_name}}
+                  </h5>
+                  <p>
+                    {{i.product_desc}}
+                  </p>
+                  <div class="options">
+                    <h6>
+                      RS.{{i.product_price}}
+                    </h6>
+                    <h5>
+                      <a href="{% url 'seller-product-detail' pk=i.pk %}" class="option1"><i class="fa fa-info-circle" aria-hidden="true"></i></a></h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="">
+          View More
+        </a>
+      </div>
+    </div>
+  </section>
+   
+
+</body>
+
+</html>
+{% endblock %}

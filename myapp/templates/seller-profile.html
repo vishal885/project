@@ -1,0 +1,84 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+
+</head>
+
+<body class="sub_page">
+
+ 
+    <!-- header section strats -->
+    <header class="header_section">
+     
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- book section -->
+  
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Edit Profile
+        </h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 " >
+          <div class="form_container">
+            {% if msg %}
+              <b style="color:blue">{{msg}}</b>
+            {% endif %}
+            <form action="{% url 'profile' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+             
+              <br><br><br>
+              <div>
+                <input type="text" class="form-control" value="{{user.fname}}" name="fname" />
+              </div>
+              <div>
+                <input type="text" class="form-control" value="{{user.lname}}" name="lname" />
+              </div>
+              <div>
+                <input type="text" class="form-control" value="{{user.mobile}}" name="mobile" />
+              </div>
+              <div>
+                <input type="email" class="form-control" value="{{user.email}}" name="email" readonly />
+              </div>
+              <div>
+                <textarea class="form-control" name="address" required>{{user.address}}</textarea>
+              </div>
+             
+              <div>
+                 <img src="{{user.profile_pic.url}}" width="100px" height="100px">
+                 <input type="file" name="profile_pic">
+              </div>
+              <div>
+              <div class="btn_box">
+                <button>
+                  Update Profile
+                </button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- end book section -->
+
+  <!-- footer section -->
+ 
+
+</body>
+
+</html>
+{% endblock %}

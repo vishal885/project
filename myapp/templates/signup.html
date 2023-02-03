@@ -1,0 +1,94 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+
+</head>
+
+<body class="sub_page">
+
+ 
+    <!-- header section strats -->
+    <header class="header_section">
+     
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- book section -->
+  
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Sigup With As
+        </h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 " >
+          <div class="form_container">
+            {% if msg %}
+              <b style="color:blue">{{msg}}</b>
+            {% endif %}
+            <form action="{% url 'signup' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div>
+              <select name="usertype" >
+                <option>---Select User Type---</option>
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+              </select>
+              </div>
+              <br><br><br>
+              <div>
+                <input type="text" class="form-control" placeholder="Enter First Name" name="fname" />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Enter Last Name" name="lname" />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Phone Number" name="mobile" />
+              </div>
+              <div>
+                <input type="email" class="form-control" placeholder="Your Email" name="email"  />
+              </div>
+              <div>
+                <textarea class="form-control"  placeholder="Enter Your Address" name="address" required></textarea>
+              </div>
+              <div>
+                <input type="password" name="password" class="form-control"  placeholder="Enter Password" required>
+              </div>
+              <div>
+                <input type="password" name="cpassword" class="form-control"  placeholder="Enter Confirm Password" required>
+              </div>
+              <div>
+                 <input type="file" name="profile_pic">
+              </div>
+              <div>
+              <div class="btn_box">
+                <button>
+                  Signup 
+                </button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- end book section -->
+
+  <!-- footer section -->
+ 
+
+</body>
+
+</html>
+{% endblock %}

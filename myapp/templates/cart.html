@@ -1,0 +1,96 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+ 
+    <!-- end header section -->
+</head>
+
+  <!-- food section -->
+
+  <section class="food_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          {% if carts %}
+          <span>Cart Products</span>
+          {% else %}
+             <span>Your Cart is Empty</span>
+          {% endif %}
+        </h2>
+      </div>
+
+     
+      <div class="filters-content">
+        <div class="row grid">
+          {% for i in carts %}
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="{{i.product.product_pic.url}}" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                     {{i.product.product_name}}
+                  </h5>
+                 
+                  <div class="options">
+                    <h6>
+                      RS.{{i.product.product_price}}
+                    </h6>
+                    <h5>
+                      <a href="{% url 'remove-from-cart' pk=i.product.pk%}" class="option1"><i class='fa fa-remove' style='color: red;font-size: 40px'></i></a>
+                    </h5>
+                  </div>
+                    <div>
+                    <h5> 
+                      <form name="change-qty" method="post" action="{% url 'change-qty' %}">
+                           {% csrf_token %}
+                           <input type="hidden" name="pk" value="{{i.pk}}">
+                           <h5>Quantity :</h5><input type="number" name="product_qty" value="{{i.product_qty}}" min="1" max="10" onchange="this.form.submit();">
+                      </form>
+                      </h5>&emsp;&emsp;&emsp;&emsp;
+                    </div>
+                      <h5>
+                        Total : RS.{{i.total_price}}
+                      </h5>
+                      <h5>
+                        Delivery Charge : RS.{{i.delivery_charge}}
+                      </h5>                   
+                     
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="heading_container heading_center">
+        <h2><span>Net Price : {{net_price}}</span><br>
+        <form method="post" action="{% url 'pay' %}">
+            {% csrf_token %}
+            <input type="hidden" name="amount" value="{{net_price}}">
+            <input type="submit" value="Procced To Pay" class="btn btn-primary">
+          </form>
+        </h2>
+          
+        </div>
+      </div>
+     
+    </div>
+  </section>
+
+  <!-- end food section -->
+
+  <!-- footer section -->
+  
+
+</body>
+
+</html>
+{% endblock %}

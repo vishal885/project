@@ -1,0 +1,76 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  
+
+</head>
+
+<body class="sub_page">
+
+ 
+    <!-- header section strats -->
+    <header class="header_section">
+     
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <!-- book section -->
+  
+  <section class="book_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Add Product
+        </h2>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6 " >
+          <div class="form_container">
+            {% if msg %}
+              <b style="color:blue">{{msg}}</b>
+            {% endif %}
+            <form action="{% url 'seller-add-product' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              
+              <div>
+                <input type="text" class="form-control" placeholder="Enter Product Name" name="product_name" />
+              </div>
+              <div>
+                <input type="text" class="form-control" placeholder="Enter Product Price" name="product_price" />
+              </div>
+              <div>
+                <textarea class="form-control"  placeholder="Enter Product Description" name="product_desc" required></textarea>
+              </div>
+              <div>
+                 <input type="file" name="product_pic">
+              </div>
+             
+
+              <div class="btn_box">
+                <button>
+                  Add Product
+                </button>
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- end book section -->
+
+  <!-- footer section -->
+ 
+
+</body>
+
+</html>
+{% endblock %}
